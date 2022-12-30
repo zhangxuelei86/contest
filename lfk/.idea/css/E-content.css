@@ -1,0 +1,12 @@
+#body{
+position:absolute;
+left:15%;
+padding:5px;
+width:70%;
+height:auto;
+}
+.c{
+display:inline-block;
+float:left;
+margin:2px;
+}
