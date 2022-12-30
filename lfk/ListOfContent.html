@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内容分类</title>
+    <script src="./.idea/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="./.idea/css/LOC.css">
+    <link rel="stylesheet" type="text/css" href="./.idea/css/head.css">
+    <style>
+        #body>div{
+        background-image: url(./.idea/picture/001.jpg);
+        }
+        #body>div:hover{
+        animation: myfirst 20s;
+        }
+        @keyframes myfirst
+        {
+        0%   {background-image: url(./.idea/picture/001.jpg);}
+        25%  {background-image: url(./.idea/picture/002.jpg);}
+        100% {background-image: url(./.idea/picture/003.jpg);}
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="menu">
+        <table border="solid" width="100%">
+            <tr>
+                <td id="m-left">
+                    <img src="./.idea/picture/123.jpg" alt="logo" id="logo">
+                    <a href="index.html">首页</a>
+                    <a href="ListOfContent.html">内容分类</a>
+                    <a href="">账户管理</a>
+                    <a href="">服务预订</a>
+                </td>
+                <td width="20%" valign="bottom">
+                    <form>
+                        <input type="text" placeholder="请输入搜索内容">
+                        <input type="submit" value="搜索">
+                    </form>
+                </td>
+                <td width="10%">
+                    <img src="./.idea/picture/123.jpg" alt="logo" id="head">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="body">
+    <div id="economic">
+        <span style="font-size:30px;">经济版块</span>
+    </div>
+    <div id="culture">
+        <span style="font-size:30px;">文化板块</span>
+    </div>
+    <div id="life">
+        <span style="font-size:30px;">生活板块</span>
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+    $("#economic").click(function(){
+    window.location.href="E-content.html"})
+    })
+</script>
+</html>
