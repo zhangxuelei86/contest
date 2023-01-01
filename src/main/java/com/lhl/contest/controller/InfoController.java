@@ -27,10 +27,17 @@ public class InfoController {
     }
 
     //获取关键字进行查询
-    @GetMapping("/search")
+    @GetMapping("/searchInfo")
     public List search(@RequestParam("keyword") String keyword) throws IOException {
         return infoService.listInfo(keyword);
     }
+
+    //通过Id获取信息内容
+    @GetMapping("/getInfoById")
+    public Info getInfoById(@RequestParam("id") int id) throws IOException {
+        return infoService.getInfoById(id);
+    }
+
 
     //测试！！！上传信息
     @PostMapping("uploadInfo")
