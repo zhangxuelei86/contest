@@ -18,7 +18,7 @@ public interface InfoMapper extends BaseMapper<Info> {
                     @Result(column = "type", property = "infoType"),
                     @Result(column = "status", property = "infoStatus"),
                     @Result(column = "id", property = "imgList", javaType = List.class,
-                            many = @Many(select = "com.lhl.demo1.mapper.ImgMapper.selectImgByInfoId")
+                            many = @Many(select = "com.lhl.contest.mapper.ImgMapper.selectImgByInfoId")
                     )
             }
     )
