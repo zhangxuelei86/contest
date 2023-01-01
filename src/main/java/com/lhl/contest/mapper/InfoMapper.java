@@ -8,23 +8,44 @@ import java.util.List;
 
 @Mapper
 public interface InfoMapper extends BaseMapper<Info> {
-    //取出所有Info以及相关图片
+    //取出所有Info、段落以及相关图片
     @Select("select * from info")
     @Results(
             {
                     @Result(column = "id", property = "infoId"),
                     @Result(column = "title", property = "infoTitle"),
-                    @Result(column = "content", property = "infoContent"),
                     @Result(column = "type", property = "infoType"),
                     @Result(column = "status", property = "infoStatus"),
                     @Result(column = "id", property = "imgList", javaType = List.class,
-                            many = @Many(select = "com.lhl.contest.mapper.ImgMapper.selectImgByInfoId")
+                            many = @Many(select = "com.lhl.contest.mapper.ImgMapper.listImgByInfoId")
+                    ),
+                    @Result(column = "id", property = "infoParaList", javaType = List.class,
+                            many = @Many(select = "com.lhl.contest.mapper.InfoParaMapper.listParaByInfoId")
                     )
             }
     )
     List<Info> listAllInfo();
 
 
+    //取出相关info，img，infoPara
+    @Select("select * from info where title like #{keyword}")
+    @Results(
+            {
+                    @Result(column = "id", property = "infoId"),
+                    @Result(column = "title", property = "infoTitle"),
+                    @Result(column = "type", property = "infoType"),
+                    @Result(column = "status", property = "infoStatus"),
+                    @Result(column = "id", property = "imgList", javaType = List.class,
+                            many = @Many(select = "com.lhl.contest.mapper.ImgMapper.listImgByInfoId")
+                    ),
+                    @Result(column = "id", property = "infoParaList", javaType = List.class,
+                            many = @Many(select = "com.lhl.contest.mapper.InfoParaMapper.listParaByInfoId")
+                    )
+            }
+    )
+    List<Info> search(String keyword);
+
+    //测试
     //useGeneratedKeys :默认 false ,作用：设置是否使用JDBC的getGenereatedKeys方法获取主键
     // 并赋值到keyProperty设置的领域模型属性中。
     //keyProperty、keyColumn：返回的字段。
@@ -32,19 +53,4 @@ public interface InfoMapper extends BaseMapper<Info> {
     @Insert("insert into info(title,content,type) values(#{infoTitle},#{infoContent},#{infoType})")
     @Options(useGeneratedKeys = true, keyProperty = "infoId", keyColumn = "id")
     int insertInfo(Info info);
-
-    @Select("select * from info where title like #{keyword}")
-    @Results(
-            {
-                    @Result(column = "id", property = "infoId"),
-                    @Result(column = "title", property = "infoTitle"),
-                    @Result(column = "content", property = "infoContent"),
-                    @Result(column = "type", property = "infoType"),
-                    @Result(column = "status", property = "infoStatus"),
-                    @Result(column = "id", property = "imgList", javaType = List.class,
-                            many = @Many(select = "com.lhl.contest.mapper.ImgMapper.selectImgByInfoId")
-                    )
-            }
-    )
-    List<Info> search(String keyword);
 }

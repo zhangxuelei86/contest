@@ -1,6 +1,7 @@
 package com.lhl.contest.controller;
 
 import com.lhl.contest.entity.Info;
+import com.lhl.contest.entity.InfoPara;
 import com.lhl.contest.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,23 +23,29 @@ public class InfoController {
     //获取所有信息
     @GetMapping("/listAllInfo")
     public List<Info> listAllInfo() throws IOException {
-        return infoService.listAllInfo();
+        return infoService.listInfo(null);
     }
 
-    //上传信息
+    //获取关键字进行查询
+    @GetMapping("/search")
+    public List search(@RequestParam("keyword") String keyword) throws IOException {
+        return infoService.listInfo(keyword);
+    }
+
+    //测试！！！上传信息
     @PostMapping("uploadInfo")
     public String uploadInfo(@RequestParam("infoTitle") String infoTitle,
-                             @RequestParam("infoContent") String infoContent,
+                             @RequestParam("infoContent") String[] infoParas,
                              @RequestParam("infoType") String infoType,
                              @RequestParam("imgs") MultipartFile[] imgs
     ) throws IOException {
         Info info = new Info();
         info.setInfoTitle(infoTitle);
-        info.setInfoContent(infoContent);
+        //未处理的信息段落（数组转化为列表）
+        info.setInfoParaList(new ArrayList<String>(Arrays.asList(infoParas)));
         info.setInfoType(infoType);
-        //数组转化为列表
-        List<MultipartFile> imgList = new ArrayList<MultipartFile>(Arrays.asList(imgs));
-        info.setImgList(imgList);
+        //未处理的图片（数组转化为列表）
+        info.setImgList(new ArrayList<MultipartFile>(Arrays.asList(imgs)));
         if (infoService.saveInfo(info)) {
             return "上传成功！";
         } else {
@@ -52,9 +59,4 @@ public class InfoController {
         return infoService.listAllImg();
     }
 
-    //获取关键字进行查询
-    @GetMapping("/search")
-    public List search(@RequestParam("keyword") String keyword) throws IOException {
-        return infoService.search(keyword);
-    }
 }
