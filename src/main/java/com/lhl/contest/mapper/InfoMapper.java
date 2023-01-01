@@ -45,6 +45,23 @@ public interface InfoMapper extends BaseMapper<Info> {
     )
     List<Info> search(String keyword);
 
+    @Select("select * from info where id = #{id} ")
+    @Results(
+            {
+                    @Result(column = "id", property = "infoId"),
+                    @Result(column = "title", property = "infoTitle"),
+                    @Result(column = "type", property = "infoType"),
+                    @Result(column = "status", property = "infoStatus"),
+                    @Result(column = "id", property = "imgList", javaType = List.class,
+                            many = @Many(select = "com.lhl.contest.mapper.ImgMapper.listImgByInfoId")
+                    ),
+                    @Result(column = "id", property = "infoParaList", javaType = List.class,
+                            many = @Many(select = "com.lhl.contest.mapper.InfoParaMapper.listParaByInfoId")
+                    )
+            }
+    )
+    Info selectInfoById(int id);
+
     //测试
     //useGeneratedKeys :默认 false ,作用：设置是否使用JDBC的getGenereatedKeys方法获取主键
     // 并赋值到keyProperty设置的领域模型属性中。

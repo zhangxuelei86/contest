@@ -44,7 +44,6 @@ public class InfoService {
             infoList = infoMapper.search("%" + keyword + "%");
         }
         for (Info info : infoList) {
-            int infoId = info.getInfoId();
             //获取Img类列表
             List<Img> imgList = info.getImgList();
             //对信息卡片中的图片列表中的图片转化为MultipartFile文件，并保存地址
@@ -53,6 +52,18 @@ public class InfoService {
             }
         }
         return infoList;
+    }
+
+    //根据Id获取信息
+    public Info getInfoById(int id) throws IOException {
+        Info info = infoMapper.selectInfoById(id);
+        //获取Img类列表
+        List<Img> imgList = info.getImgList();
+        //对信息卡片中的图片列表中的图片转化为MultipartFile文件，并保存地址
+        for (Img img : imgList) {
+            img.setImgPath(getImgPath(img));
+        }
+        return info;
     }
 
 
