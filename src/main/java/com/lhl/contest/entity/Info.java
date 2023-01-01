@@ -13,8 +13,8 @@ public class Info {
     private int infoId;
     @TableField("title")
     private String infoTitle;
-    @TableField("content")
-    private String infoContent;
+    @TableField(exist = false)
+    private List infoParaList;
     @TableField("type")
     private String infoType;
     @TableField("status")
@@ -38,12 +38,12 @@ public class Info {
         this.infoTitle = infoTitle;
     }
 
-    public String getInfoContent() {
-        return infoContent;
+    public List getInfoParaList() {
+        return infoParaList;
     }
 
-    public void setInfoContent(String infoContent) {
-        this.infoContent = infoContent;
+    public void setInfoParaList(List infoParaList) {
+        this.infoParaList = infoParaList;
     }
 
     public String getInfoType() {
@@ -75,9 +75,9 @@ public class Info {
         return "Info{" +
                 "infoId=" + infoId +
                 ", infoTitle='" + infoTitle + '\'' +
-                ", infoContent='" + infoContent + '\'' +
+                ", infoParaList=" + infoParaList +
                 ", infoType='" + infoType + '\'' +
-                ", infoStatus=" + infoStatus +
+                ", infoStatus='" + infoStatus + '\'' +
                 ", imgList=" + imgList +
                 '}';
     }

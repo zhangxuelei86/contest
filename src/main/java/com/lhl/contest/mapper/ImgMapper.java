@@ -18,8 +18,8 @@ public interface ImgMapper extends BaseMapper<Img> {
                     @Result(column = "status", property = "imgStatus")
             }
     )
-    List<Img> selectImgByInfoId(int infoId);
+    List<Img> listImgByInfoId(int infoId);
 
-    @Insert("insert into img(info_id,name,img) values(#{infoId},#{imgName},#{imgByte})")
+    @Insert("insert into img(info_id,name,img,serial_num) values(#{infoId},#{imgName},#{imgByte},#{serialNum})")
     int insertImg(Img img);
 }

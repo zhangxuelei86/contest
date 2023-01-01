@@ -2,7 +2,9 @@ package com.lhl.contest.service;
 
 import com.lhl.contest.entity.Img;
 import com.lhl.contest.entity.Info;
+import com.lhl.contest.entity.InfoPara;
 import com.lhl.contest.mapper.ImgMapper;
+import com.lhl.contest.mapper.InfoParaMapper;
 import com.lhl.contest.mapper.InfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.system.ApplicationHome;
@@ -27,68 +29,32 @@ public class InfoService {
     @Autowired
     private ImgMapper imgMapper;
 
-    //测试：获取数据库所有图片
-    public List listAllImg() {
-        List<Img> imgList = imgMapper.selectImgByInfoId(2);
-        for (Img img : imgList) {
-            System.out.println(img);
-        }
-        return imgList;
-    }
-
-    //获取所有信息
-    public List listAllInfo() throws IOException {
-        List<Info> infoList = infoMapper.listAllInfo();
-        for (Info info : infoList) {
-            int infoId = info.getInfoId();
-            //获取Img类列表
-            List<Img> imgList = info.getImgList();
-            //对信息卡片中的图片列表中的图片转化为MultipartFile文件，并保存地址
-            List<String> imgPathList = new ArrayList<>();
-            for (Img img : imgList) {
-                imgPathList.add(getImgPath(img));
-            }
-            //设置为图片地址列表
-            info.setImgList(imgPathList);
-        }
-        return infoList;
-    }
+    @Autowired
+    private InfoParaMapper infoParaMapper;
 
 
-    //保存信息到数据库
-    public boolean saveInfo(Info info) throws IOException {
-        if (infoMapper.insertInfo(info) > 0) {
-            List<MultipartFile> imgList = info.getImgList();
-            for (MultipartFile imgFile : imgList) {
-                Img img = new Img();
-                img.setInfoId(info.getInfoId());
-                img.setImgByte(imgFile.getBytes());
-                img.setImgName(imgFile.getOriginalFilename());
-                imgMapper.insertImg(img);
-            }
-            return true;
+    //获取信息
+    public List listInfo(String keyword) throws IOException {
+        List<Info> infoList = null;
+        if (keyword == null) {
+            //获取所有信息
+            infoList = infoMapper.listAllInfo();
         } else {
-            return false;
+            //获取相关信息
+            infoList = infoMapper.search("%" + keyword + "%");
         }
-    }
-
-    //查询关键字相关信息
-    public List search(String keyword) throws IOException {
-        List<Info> infoList = infoMapper.search("%" + keyword + "%");
         for (Info info : infoList) {
             int infoId = info.getInfoId();
             //获取Img类列表
             List<Img> imgList = info.getImgList();
             //对信息卡片中的图片列表中的图片转化为MultipartFile文件，并保存地址
-            List<String> imgPathList = new ArrayList<>();
             for (Img img : imgList) {
-                imgPathList.add(getImgPath(img));
+                img.setImgPath(getImgPath(img));
             }
-            //设置为图片地址列表
-            info.setImgList(imgPathList);
         }
         return infoList;
     }
+
 
     //将数据库读取的比特格式图片转化为MultipartFile文件，并保存在服务器上，返回地址
     public String getImgPath(Img img) throws IOException {
@@ -123,5 +89,64 @@ public class InfoService {
         //！！！！部署后运行使用！！！！
         //getDir获取打包后，jar包所在目录
         //return applicationHome.getDir()+"/static/img/";
+    }
+
+    //测试！！！保存信息到数据库
+    public boolean saveInfo(Info info) throws IOException {
+        if (infoMapper.insertInfo(info) > 0) {
+            //保存图片到数据库中
+            List<MultipartFile> imgList = info.getImgList();
+            for (MultipartFile imgFile : imgList) {
+                Img img = new Img();
+                //转换为对象
+                img.setInfoId(info.getInfoId());
+                img.setImgByte(imgFile.getBytes());
+                img.setImgName(imgFile.getOriginalFilename());
+                if (imgMapper.insertImg(img) <= 0) {
+                    return false;
+                }
+            }
+            //保存信息内容段落到数据库中
+            List<String> infoParaList = info.getInfoParaList();
+            for (String infoParaStr : infoParaList) {
+                InfoPara infoPara = new InfoPara();
+                //转换为对象
+                infoPara.setInfoId(info.getInfoId());
+                infoPara.setInfoPara(infoParaStr);
+                if (infoParaMapper.insertInfoContent(infoPara) <= 0) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //测试：获取数据库所有图片
+    public List listAllImg() {
+        List<Img> imgList = imgMapper.listImgByInfoId(2);
+        for (Img img : imgList) {
+            System.out.println(img);
+        }
+        return imgList;
+    }
+
+    //测试！！！查询关键字相关信息
+    public List search(String keyword) throws IOException {
+        List<Info> infoList = infoMapper.search("%" + keyword + "%");
+        for (Info info : infoList) {
+            int infoId = info.getInfoId();
+            //获取Img类列表
+            List<Img> imgList = info.getImgList();
+            //对信息卡片中的图片列表中的图片转化为MultipartFile文件，并保存地址
+            List<String> imgPathList = new ArrayList<>();
+            for (Img img : imgList) {
+                imgPathList.add(getImgPath(img));
+            }
+            //设置为图片地址列表
+            info.setImgList(imgPathList);
+        }
+        return infoList;
     }
 }

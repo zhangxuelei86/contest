@@ -17,8 +17,13 @@ public class Img {
     private String imgName;
     @TableField("img")
     private byte[] imgByte;
+    @TableField(exist = false)
+    private String imgPath;
     @TableField("status")
     private String imgStatus;
+
+    @TableField("serial_num")
+    private int serialNum;
 
     public int getImgId() {
         return imgId;
@@ -60,14 +65,31 @@ public class Img {
         this.imgStatus = imgStatus;
     }
 
+    public int getSerialNum() {
+        return serialNum;
+    }
+
+    public void setSerialNum(int serialNum) {
+        this.serialNum = serialNum;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
     @Override
     public String toString() {
         return "Img{" +
                 "imgId=" + imgId +
                 ", infoId=" + infoId +
                 ", imgName='" + imgName + '\'' +
-                ", imgByte=" + Arrays.toString(imgByte) +
+                ", imgPath=" + imgPath +
                 ", imgStatus='" + imgStatus + '\'' +
+                ", serialNum=" + serialNum +
                 '}';
     }
 }
