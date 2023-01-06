@@ -1,16 +1,15 @@
 package com.lhl.contest.entity.api;
 
 import com.alibaba.fastjson.JSONObject;
-import com.lhl.contest.entity.PostRequest;
 
 public class GptApi {
     private static final String GPT_API_HOST = "https://api.openai.com/v1/completions";
     private static final String API_KEY = "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";
-    private float temperature = 0.8F;
+    private static final float temperature = 0.8F;
     //生成文本的长度
-    private int maxTokens = 2048;
+    private static final int maxTokens = 2048;
     //模型类型
-    private String modelEngine = "text-davinci-003";
+    private static final String modelEngine = "text-davinci-003";
 
     private String prompt;
 

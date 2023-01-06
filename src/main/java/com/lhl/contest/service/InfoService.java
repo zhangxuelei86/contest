@@ -82,7 +82,7 @@ public class InfoService {
         //保存图片到服务器相应路径
         imgFile.transferTo(path);
         //返回浏览器端访问路径
-        return "/img/" + img.getImgName();
+        return "/img/infoImg" + img.getImgName();
     }
 
 
@@ -95,7 +95,7 @@ public class InfoService {
         //！！！！本地运行使用！！！！
         // 保存目录位置根据项目需求可随意更改
         return applicationHome.getDir().getParentFile()
-                .getParentFile().getAbsolutePath() + "\\src\\main\\resources\\static\\img\\";
+                .getParentFile().getAbsolutePath() + "\\src\\main\\resources\\static\\img\\infoImg";
 
         //！！！！部署后运行使用！！！！
         //getDir获取打包后，jar包所在目录

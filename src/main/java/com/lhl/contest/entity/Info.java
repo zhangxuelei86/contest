@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Info {
     private List infoParaList;
     @TableField("type")
     private String infoType;
+    @JsonIgnore//生成json忽略
     @TableField("status")
     private String infoStatus;
     @TableField(exist = false)
