@@ -1,9 +1,7 @@
 package com.lhl.contest.entity.api;
 
 import com.alibaba.fastjson.JSONObject;
-import com.lhl.contest.entity.PostRequest;
 
-import java.net.URL;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 

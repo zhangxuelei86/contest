@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.Arrays;
-
+@JsonIgnoreProperties({"imgByte","imgStatus","imgName"})//生成JSON忽略字段
 @TableName("img")
 public class Img {
     @TableId(value = "img_id", type = IdType.AUTO)
