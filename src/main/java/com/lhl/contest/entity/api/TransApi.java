@@ -1,5 +1,6 @@
 package com.lhl.contest.entity.api;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.net.URLEncoder;
@@ -13,16 +14,22 @@ public class TransApi {
     public String getTransResult(String from, String to, String query) throws Exception {
         PostRequest postRequest = new PostRequest(TRANS_API_HOST, appid, apiKey);
         String response = postRequest.sendPostRequest(buildParams(from,to,query));
-        //将返回的结果转换为JSON对象
-        JSONObject responseJSON = JSONObject.parseObject(response);
-        String transResult = responseJSON.getString("trans_result");
         //包含源文本与翻译文本
-        JSONObject transJSON = JSONObject.parseObject(transResult.substring(1, transResult.length() - 1));
+        String transResult = JSONObject.parseObject(response).getString("trans_result");
+        //转化为JSON数组
+        JSONArray transJSONArray = JSONArray.parseArray(transResult);
+        //对结果进行拼接
+        String result ="";
+        for (int i=0;i<transJSONArray.size();i++){
+            JSONObject jsonObject = transJSONArray.getJSONObject(i);
+            result+=jsonObject.getString("dst")+"\\n";
+        }
         //获取翻译后的结果
-        return transJSON.getString("dst");
+        return result;
     }
 
     public String buildParams(String from, String to, String query) throws Exception {
+
         //随机数
         String salt = String.valueOf(System.currentTimeMillis());
 

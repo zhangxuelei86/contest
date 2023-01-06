@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 
 public class GptApi {
     private static final String GPT_API_HOST = "https://api.openai.com/v1/completions";
-    private static final String API_KEY = "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";
-    private static final float temperature = 0.8F;
+    private static final String API_KEY = "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";
+    private static final float temperature = 0.9F;
     //生成文本的长度
     private static final int maxTokens = 2048;
     //模型类型
@@ -20,9 +20,11 @@ public class GptApi {
     public String getGptResult() throws Exception {
         PostRequest postRequest = new PostRequest(GPT_API_HOST, null, API_KEY);
         JSONObject response = JSONObject.parseObject(postRequest.sendPostRequest(buildParams()));
-        String result0 = response.getString("choices");
+       //获取包含结果的字段
+        String choices = response.getString("choices");
         //去除中括号
-        JSONObject result1 = JSONObject.parseObject(result0.substring(1, result0.length() - 1));
+        JSONObject result1 = JSONObject.parseObject(choices.substring(1, choices.length() - 1));
+
         return result1.getString("text");
     }
 
