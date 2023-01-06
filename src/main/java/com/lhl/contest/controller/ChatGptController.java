@@ -12,13 +12,13 @@ public class ChatGptController {
 
     @PostMapping("/chatgpt")
     public String chatGpt(@RequestParam("prompt") String prompt) throws Exception{
-        System.out.println("prompt:"+prompt);
         //chatgpt不支持中文，需要进行翻译
         TransApi transApi = new TransApi();
         GptApi gptApi = new GptApi(transApi.getTransResult("auto","en",prompt));
         //将结果翻译为中文
         String response = transApi.getTransResult("auto","zh",gptApi.getGptResult());
-        return response;
+
+        return response.replace("\\n","\n");
     }
 
     //!!!测试
