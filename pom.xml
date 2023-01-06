@@ -47,11 +47,11 @@
             <artifactId>spring-test</artifactId>
         </dependency>
         <!--chatgpt-->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.12</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.httpcomponents</groupId>-->
+<!--            <artifactId>httpclient</artifactId>-->
+<!--            <version>4.5.12</version>-->
+<!--        </dependency>-->
         <!--JSON处理-->
         <dependency>
             <groupId>com.alibaba</groupId>
