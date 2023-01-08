@@ -82,7 +82,7 @@ public class InfoService {
         //保存图片到服务器相应路径
         imgFile.transferTo(path);
         //返回浏览器端访问路径
-        return "/infoImg" + img.getImgName();
+        return "/infoImg/" + img.getImgName();
     }
 
 

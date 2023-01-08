@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 public class GptApi {
     private static final String GPT_API_HOST = "https://api.openai.com/v1/completions";
-    private static final String API_KEY = "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";
+    private static final String API_KEY = "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";
     private static final float temperature = 0.9F;
     //生成文本的长度
     private static final int maxTokens = 2048;
