@@ -1,0 +1,128 @@
+#chat {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#chat input {
+    border: none;
+    border-bottom: 2px solid gray;
+    height: 30px;
+    width: 300px;
+    background-color: aliceblue;
+}
+
+#chat button {
+    /* display: inline-block; */
+    border: none;
+    margin-left: 10px;
+    height: 35px;
+    width: 80px;
+    background-color: aliceblue;
+}
+
+#chat_his {
+    position: absolute;
+    right: 30px;
+    bottom: 80px;
+    width: 404px;
+    height: calc(100% - 80px);
+    overflow: auto;
+}
+
+/*隐藏滚动条*/
+::-webkit-scrollbar {
+    display: none;
+}
+
+#chat_his .dialogue {
+    flex-shrink: 0;
+    width: 100%;
+    flex-basis: fit-content;
+}
+
+#chat_his .dialogue .request {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px solid gainsboro;
+    margin-bottom: 10px;
+}
+
+#chat_his .dialogue .response {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px solid gainsboro;
+    margin-bottom: 10px;
+}
+
+#chat_his .dialogue .request img,
+#chat_his .dialogue .response img {
+    width: 50px;
+    height: 50px;
+}
+
+#chat_his .dialogue .request div:last-child{
+    text-align: right;
+}
+#chat_his .dialogue .request div:last-child,
+#chat_his .dialogue .response div:last-child {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 284px;
+}
+
+/*动画*/
+.loading {
+    height: 35px;
+    margin-left: 10px;
+    width: 80px;
+    background-color: aliceblue;
+    /* display: inline-block; */
+    /* display: flex; */
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.loading>div {
+    width: 10px;
+    height: 10px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    animation: action 1.5s infinite ease-in-out;
+    animation-fill-mode: both;
+}
+
+.loading .point1 {
+    animation-delay: -0.3s;
+}
+
+.loading .point2 {
+    animation-delay: -0.1s;
+}
+
+@keyframes action {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1.0);
+    }
+}
