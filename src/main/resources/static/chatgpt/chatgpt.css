@@ -40,9 +40,8 @@
 }
 
 #chat_his .dialogue {
-    flex-shrink: 0;
     width: 100%;
-    flex-basis: fit-content;
+    /*border: brown 1px solid;*/
 }
 
 #chat_his .dialogue .request {
@@ -71,14 +70,35 @@
     height: 50px;
 }
 
-#chat_his .dialogue .request div:last-child{
+#chat_his .dialogue .request div:last-child {
     text-align: right;
 }
+
 #chat_his .dialogue .request div:last-child,
 #chat_his .dialogue .response div:last-child {
     margin-left: 10px;
     margin-right: 10px;
     width: 284px;
+}
+
+#last {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+    border: gray 1px solid;
+    position: absolute;
+    right: 55px;
+    bottom: 90px;
+
+}
+#last button{
+    border: none;
+    color: gray;
+    background-color: transparent;
 }
 
 /*动画*/
@@ -87,15 +107,13 @@
     margin-left: 10px;
     width: 80px;
     background-color: aliceblue;
-    /* display: inline-block; */
-    /* display: flex; */
     display: none;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
-.loading>div {
+.loading > div {
     width: 10px;
     height: 10px;
     background-color: gray;
