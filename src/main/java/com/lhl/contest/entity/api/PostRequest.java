@@ -1,10 +1,14 @@
 package com.lhl.contest.entity.api;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PostRequest {
     private String apiHost;
@@ -17,7 +21,7 @@ public class PostRequest {
         this.apiKey = apiKey;
     }
 
-    public String sendPostRequest(String requestBody) throws Exception {
+    public Map sendPostRequest(String requestBody) throws Exception {
         //得到url
         URL url = new URL(apiHost);
         //得到网络访问对象
@@ -50,7 +54,15 @@ public class PostRequest {
             responseBuilder.append(line);
         }
         inputReader.close();
+        //return responseBuilder.toString();
 
-        return responseBuilder.toString();
+        System.out.println("状态码：" + connection.getResponseCode());
+        System.out.println("消息：" + connection.getResponseMessage());
+        HashMap response = new HashMap<>();
+        response.put("status", connection.getResponseCode());
+        response.put("msg", connection.getResponseMessage());
+        response.put("data", responseBuilder.toString());
+        return response;
     }
+
 }

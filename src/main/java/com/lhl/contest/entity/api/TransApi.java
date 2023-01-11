@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.net.URLEncoder;
 import java.security.MessageDigest;
+import java.util.Map;
 
 public class TransApi {
     private static final String TRANS_API_HOST = "http://api.fanyi.baidu.com/api/trans/vip/translate";
@@ -13,9 +14,9 @@ public class TransApi {
 
     public String getTransResult(String from, String to, String query) throws Exception {
         PostRequest postRequest = new PostRequest(TRANS_API_HOST, appid, apiKey);
-        String response = postRequest.sendPostRequest(buildParams(from,to,query));
+        Map responseMap = postRequest.sendPostRequest(buildParams(from,to,query));
         //包含源文本与翻译文本
-        String transResult = JSONObject.parseObject(response).getString("trans_result");
+        String transResult = JSONObject.parseObject((String) responseMap.get("data")).getString("trans_result");
         //转化为JSON数组
         JSONArray transJSONArray = JSONArray.parseArray(transResult);
         //对结果进行拼接

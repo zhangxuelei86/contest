@@ -1,10 +1,14 @@
 package com.lhl.contest.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.lhl.contest.entity.api.GptApi;
 import com.lhl.contest.entity.api.TransApi;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 public class ChatGptController {
@@ -14,10 +18,17 @@ public class ChatGptController {
         //chatgpt不支持中文，需要进行翻译
         TransApi transApi = new TransApi();
         GptApi gptApi = new GptApi(transApi.getTransResult("auto","en",prompt));
+        //获取结果map
+        Map responseMap = gptApi.getGptResult();
         //将结果翻译为中文
-        String response = transApi.getTransResult("auto","zh",gptApi.getGptResult());
+        String transResult = transApi.getTransResult("auto","zh", (String) responseMap.get("data"));
 
-        return response.replace("\\n","\n");
+        responseMap.replace("data",transResult.replace("\\n","\n"));
+
+        System.out.println(responseMap);
+        JSONObject responseJson = new JSONObject(responseMap);
+        System.out.println(responseJson);
+        return String.valueOf(responseJson);
     }
 
     //!!!测试

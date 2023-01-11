@@ -17,7 +17,7 @@
 }
 
 #chat button {
-    /* display: inline-block; */
+    font-size: 20px;
     border: none;
     margin-left: 10px;
     height: 35px;
@@ -114,8 +114,8 @@
 }
 
 .loading > div {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: gray;
     border-radius: 50%;
     display: inline-block;

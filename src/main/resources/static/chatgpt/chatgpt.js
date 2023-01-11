@@ -1,7 +1,12 @@
 //发送gpt信息与返回
 $(function () {
+    // console.log("0000");
+    // console.log("scrollHeight:" + $('#chat_his')[0].scrollHeight);
+    // console.log('scrollTop:' + $('#chat_his').scrollTop());
+    // console.log('innerHeight:' + $('#chat_his').innerHeight())
+    // console.log("\n");
     //首先检测当前滚动条是否已经滚动到底部
-    if ($("#chat_his").scrollTop() + $("#chat_his").innerHeight() >= $("#chat_his")[0].scrollHeight) {
+    if (Math.round($("#chat_his").scrollTop() + $("#chat_his").innerHeight()) >= Math.round($("#chat_his")[0].scrollHeight)) {
         $('#last').hide();
     }
     $("#chat button").click(function () {
@@ -17,6 +22,9 @@ $(function () {
                             prompt: chat_input
                         },
                         success: function (result) {
+                            console.log(result);
+                            var resultJson = JSON.parse(result);
+                            console.log(resultJson);
                             $('#chat_his').append(
                                 "<div class='dialogue'>" +
                                 "<div class= 'request' >" +
@@ -25,19 +33,26 @@ $(function () {
                                 "</div >" +
                                 "<div class='response'>" +
                                 "<div><img src='chatgpt.png'></div>" +
-                                "<div>" + result + "</div>" +
+                                "<div>" + resultJson['data'] + "</div>" +
                                 "</div>" +
                                 "</div>");
                             $("#chat button").css({'display': 'inline-block'});
                             $(".loading").css({'display': 'none'});
                             //当前父div的高度
-                            var parentHeight = $("#chat_his").height();
+                            var parentHeight = Math.round($("#chat_his").height());
+                            // console.log("parentHeight:" + parentHeight);
                             //当前父div的scrollHeight
-                            var parentSH = $("#chat_his")[0].scrollHeight;
+                            var parentSH = Math.round($("#chat_his")[0].scrollHeight);
+                            // console.log("parentSH:" + parentSH);
                             //判断如果父div的高度小于scrollHeight，就说明当前滚动条未滚动到底部，则显示按钮
                             if (parentHeight < parentSH) {
                                 $('#last').show();
+                            } else {
+                                $('#last').hide();
                             }
+                        },
+                        error: function (jqXHR) {
+                            window.location.href = "/error/error.html?status="+jqXHR.status;
                         }
                     }
                 )
@@ -63,10 +78,11 @@ $(function () {
     // 监听滚动条
     $('#chat_his').on("scroll", function () {
         var scrollButton = $("#last");
-        console.log("scrollHeight:" + $('#chat_his')[0].scrollHeight);
-        console.log('scrollTop:' + $('#chat_his').scrollTop());
-        console.log('innerHeight:' + $('#chat_his').innerHeight())
-        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+        // console.log("scrollHeight:" + $('#chat_his')[0].scrollHeight);
+        // console.log('scrollTop:' + $('#chat_his').scrollTop());
+        // console.log('innerHeight:' + $('#chat_his').innerHeight())
+        // console.log("\n");
+        if (Math.round($(this).scrollTop() + $(this).innerHeight()) >= Math.round($(this)[0].scrollHeight).toFixed(2)) {
             scrollButton.hide();
         } else {
             scrollButton.show();
