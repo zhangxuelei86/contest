@@ -25,9 +25,7 @@ public class ChatGptController {
 
         responseMap.replace("data",transResult.replace("\\n","\n"));
 
-        System.out.println(responseMap);
         JSONObject responseJson = new JSONObject(responseMap);
-        System.out.println(responseJson);
         return String.valueOf(responseJson);
     }
 

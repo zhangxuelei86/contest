@@ -28,11 +28,11 @@ $(function () {
                             $('#chat_his').append(
                                 "<div class='dialogue'>" +
                                 "<div class= 'request' >" +
-                                "<div><img src='user.png'></div>" +
+                                "<div><img src='/chatgpt/user.png'></div>" +
                                 "<div>" + chat_input + "</div >" +
                                 "</div >" +
                                 "<div class='response'>" +
-                                "<div><img src='chatgpt.png'></div>" +
+                                "<div><img src='/chatgpt/chatgpt.png'></div>" +
                                 "<div>" + resultJson['data'] + "</div>" +
                                 "</div>" +
                                 "</div>");

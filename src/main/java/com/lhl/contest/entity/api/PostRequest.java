@@ -56,8 +56,6 @@ public class PostRequest {
         inputReader.close();
         //return responseBuilder.toString();
 
-        System.out.println("状态码：" + connection.getResponseCode());
-        System.out.println("消息：" + connection.getResponseMessage());
         HashMap response = new HashMap<>();
         response.put("status", connection.getResponseCode());
         response.put("msg", connection.getResponseMessage());

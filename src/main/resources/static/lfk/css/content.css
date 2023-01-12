@@ -1,0 +1,17 @@
+#content{
+display:block;
+position:absolute;
+width:100%;
+top:60px;
+left:0;
+bottom:0;
+}
+#b{
+    display: inline-block;
+    position: fixed;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    top: 60px;
+    left: 10%;
+}
