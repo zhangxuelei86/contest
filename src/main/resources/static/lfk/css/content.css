@@ -15,3 +15,10 @@ bottom:0;
     top: 60px;
     left: 10%;
 }
+#T{
+position:fixed;
+z-index:2;
+text-align:center;
+left:48%;
+top:-15px;
+}

@@ -1,13 +1,13 @@
 /*跳转到主页*/
 $(function () {
     $("#logo").click(function () {
-        window.location.href = "../index.html"
+        window.location.href = "/index.html"
     })
 });
 /*跳转到VR*/
 $(function () {
     $("#VR").click(function () {
-        window.location.href = "vr.html"
+        window.location.href = "/lfk/vr.html"
     })
 });
 /*跳转about界面*/
@@ -25,16 +25,16 @@ $(function () {
 /*跳转到分类*/
 $(function () {
     $("#E-list").click(function () {
-        window.location.href = "E-content.html"
+        window.location.href = "/lfk/E-content.html"
     })
 });
 $(function () {
     $("#C-list").click(function () {
-        window.location.href = "C-content.html"
+        window.location.href = "/lfk/C-content.html"
     })
 });
 $(function () {
     $("#L-list").click(function () {
-        window.location.href = "L-content.html"
+        window.location.href = "/lfk/L-content.html"
     })
 });

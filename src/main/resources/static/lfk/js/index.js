@@ -1,10 +1,4 @@
-/*切换页面*/
-    $(function(){
-    $(".C-page").click(function(){
-    $("#content").toggle();
-    $("#map").toggle();
-    })
-    })
+
     /*ajax*/
     $.ajax({
 	url: "/listAllInfo",

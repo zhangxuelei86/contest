@@ -7,13 +7,6 @@ top:58px;
 left:0;
 bottom:0;
 }
-.C-page{
-display:block;
-position:fixed;
-left:48%;
-bottom:10px;
-width:fit-content;
-}
 #content{
 display:none;
 position:absolute;

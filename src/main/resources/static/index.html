@@ -18,18 +18,16 @@
     <div id="About"><p>关于我们</p></div>
     <div id="search" style="float:right">
         <form action="S-content.html" method="get">
-            <input type="text" id="keyword" name="keyword" placeholder="请输入搜索内容">
+            <input type="search" id="keyword" name="keyword" placeholder="请输入搜索内容">
             <input type="submit" value="搜索" style="border-radius:20px;">
         </form>
     </div>
 </div>
 <div id="map">
     <h1>这里是地图</h1>
-    <div class="C-page"><span style="font-size:20px;">下一页</span></div>
 </div>
 <div id="content">
     <div id="loading">正在加载请稍候...(长时间不显示请刷新或联系管理人员)</div>
-    <div class="C-page" style="top:55px;bottom:auto;"><span style="font-size:20px;">上一页</span></div>
 </div>
 <script type="text/javascript" src="./lfk/js/index.js"></script>
 <script type="text/javascript">
@@ -43,6 +41,20 @@
     $(function(){$("#E-list").click(function(){window.location.href="./lfk/E-content.html"})});
     $(function(){$("#C-list").click(function(){window.location.href="./lfk/C-content.html"})});
     $(function(){$("#L-list").click(function(){window.location.href="./lfk/L-content.html"})});
+</script>
+<script>
+$(document).on("mousewheel DOMMouseScroll", function (event) {
+    var delta = (event.originalEvent.wheelDelta && (event.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+                (event.originalEvent.detail && (event.originalEvent.detail > 0 ? -1 : 1));              // firefox
+    if (delta > 0) {
+    $("#content").hide();
+    $("#map").show();
+    //do somthing
+    } else if (delta < 0) {
+      $("#content").show();
+      $("#map").hide();
+    }
+});
 </script>
 </body>
 </html>
