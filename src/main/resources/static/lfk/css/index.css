@@ -1,0 +1,17 @@
+#map{
+display:block;
+position:absolute;
+background-color:grey;
+width:100%;
+top:58px;
+left:0;
+bottom:0;
+}
+#content{
+display:none;
+position:absolute;
+width:100%;
+top:60px;
+left:0;
+bottom:0;
+}

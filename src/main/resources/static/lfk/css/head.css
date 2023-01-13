@@ -1,0 +1,33 @@
+.logo{
+      height:50px;
+      width:50px;
+      border-radius: 5px;
+   }
+#logo{
+ font-size:20px;
+}
+#menu{
+position:fixed;
+perspective:none;
+z-index:1;
+background-color:lightyellow;
+left:0;
+top:0;
+width:100%;
+}
+#menu>div{
+float:left;
+display:block;
+height:50px;
+padding:5px;
+}
+#search>form{
+position:relative;
+top:30%;
+}
+#D-list{
+display:none;
+background-color:lightyellow;
+}
+
+

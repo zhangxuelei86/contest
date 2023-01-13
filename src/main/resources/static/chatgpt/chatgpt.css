@@ -1,7 +1,7 @@
 #chat {
     position: absolute;
-    right: 30px;
-    bottom: 30px;
+    right: 20px;
+    bottom: 100px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -9,28 +9,32 @@
 }
 
 #chat input {
+    border-radius: 5px;
     border: none;
     border-bottom: 2px solid gray;
     height: 30px;
-    width: 300px;
-    background-color: aliceblue;
+    width: 314px;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #chat button {
+    border-radius: 5px;
     font-size: 20px;
     border: none;
     margin-left: 10px;
-    height: 35px;
+    height: 30px;
     width: 80px;
-    background-color: aliceblue;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #chat_his {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
     position: absolute;
-    right: 30px;
-    bottom: 80px;
+    right: 20px;
+    bottom: 150px;
     width: 404px;
-    height: calc(100% - 80px);
+    height: calc(100% - 220px);
     overflow: auto;
 }
 
@@ -66,6 +70,7 @@
 
 #chat_his .dialogue .request img,
 #chat_his .dialogue .response img {
+    border-radius: 5px;
     width: 50px;
     height: 50px;
 }
@@ -88,25 +93,28 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: white;
-    border: gray 1px solid;
+    background-color: rgb(202, 80, 46);
+    /*border: gray 1px solid;*/
     position: absolute;
-    right: 55px;
-    bottom: 90px;
+    right: 45px;
+    bottom: 160px;
 
 }
-#last button{
+
+#last button {
     border: none;
-    color: gray;
+    color: #f3e2cb;
+    font-size: 20px;
     background-color: transparent;
 }
 
 /*动画*/
 .loading {
-    height: 35px;
+    border-radius: 5px;
+    height: 30px;
     margin-left: 10px;
     width: 80px;
-    background-color: aliceblue;
+    background-color: rgba(255, 255, 255, 0.5);
     display: none;
     flex-direction: row;
     justify-content: space-around;

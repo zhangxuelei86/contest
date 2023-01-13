@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome To Beijing</title>
+    <script src="./lfk/jquery.js"></script>
+    <script src="./lfk/echarts.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lfk/css/index.css">
+    <link rel="stylesheet" type="text/css" href="./lfk/css/head.css">
+</head>
+<body>
+<div id="menu">
+    <div id="logo">
+        <img src="./lfk/picture/123.jpg" alt="logo" class="logo">
+    </div>
+    <div id="list"><p>内容分类</p><div id="D-list"><span id="E-list">经济板块</span><br><span id="C-list">文化板块</span><br><span id="L-list">生活板块</span></div></div>
+    <div id="VR"><p>VR游览</p></div>
+    <div id="About"><p>关于我们</p></div>
+    <div id="search" style="float:right">
+        <form action="S-content.html" method="get">
+            <input type="search" id="keyword" name="keyword" placeholder="请输入搜索内容">
+            <input type="submit" value="搜索" style="border-radius:20px;">
+        </form>
+    </div>
+</div>
+<div id="map">
+    <h1>这里是地图</h1>
+</div>
+<div id="content">
+    <div id="loading">正在加载请稍候...(长时间不显示请刷新或联系管理人员)</div>
+</div>
+<script type="text/javascript" src="./lfk/js/index.js"></script>
+<script type="text/javascript">
+    /*跳转到主页*/
+    $(function(){$("#logo").click(function(){window.location.href="./index.html"})});
+    /*跳转到VR*/
+    $(function(){$("#VR").click(function(){window.location.href="./lfk/vr.html"})});
+    /*显示分类*/
+    $(function(){$("#list").click(function(){$("#D-list").toggle()})});
+    /*跳转到分类*/
+    $(function(){$("#E-list").click(function(){window.location.href="./lfk/E-content.html"})});
+    $(function(){$("#C-list").click(function(){window.location.href="./lfk/C-content.html"})});
+    $(function(){$("#L-list").click(function(){window.location.href="./lfk/L-content.html"})});
+</script>
+<script>
+$(document).on("mousewheel DOMMouseScroll", function (event) {
+    var delta = (event.originalEvent.wheelDelta && (event.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+                (event.originalEvent.detail && (event.originalEvent.detail > 0 ? -1 : 1));              // firefox
+    if (delta > 0) {
+    $("#content").hide();
+    $("#map").show();
+    //do somthing
+    } else if (delta < 0) {
+      $("#content").show();
+      $("#map").hide();
+    }
+});
+</script>
+</body>
+</html>
